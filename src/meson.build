@@ -102,20 +102,22 @@ timeshift = executable('timeshift',
   install: true
 )
 
-timeshift_gtk = executable('timeshift-gtk',
-  sources_app_gtk + sources_core + sources_utility + sources_gtk,
-  config_header,
-  dependencies: dependencies,
-  install: true
-)
+if enable_gtkapp
+  timeshift_gtk = executable('timeshift-gtk',
+    sources_app_gtk + sources_core + sources_utility + sources_gtk,
+    config_header,
+    dependencies: dependencies,
+    install: true
+  )
 
-install_data(
-  sources : 'timeshift-launcher',
-  install_dir : get_option('bindir')
-)
-install_data(
-  sources : 'timeshift-gtk.desktop',
-  install_dir : join_paths(get_option('datadir'), 'applications')
-)
+  install_data(
+    sources : 'timeshift-launcher',
+    install_dir : get_option('bindir')
+  )
+  install_data(
+    sources : 'timeshift-gtk.desktop',
+    install_dir : join_paths(get_option('datadir'), 'applications')
+  )
 
-install_subdir('share', install_dir : '')
+  install_subdir('share', install_dir : '')
+endif

@@ -18,6 +18,8 @@ dependencies = [
   meson.get_compiler('c').find_library('m'),
 ]
 
+enable_gtkapp = get_option('gtkapp')
+
 enable_xapp = get_option('xapp')
 if enable_xapp
   xapp_dep = dependency('xapp')
